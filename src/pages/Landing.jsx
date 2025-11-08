@@ -6,9 +6,8 @@ import ProductSection from '../sections/ProductSection'
 import { TagScroll } from '../sections/TagScroll'
 import ProcessSection from '../sections/ProcessSection'
 import QualitySection from '../sections/QualitySection'
-import TestimonialSection from '../sections/TestimonialSection'
-// import { StackingCards } from '../sections/StackingCards'
 import PromoSection from '../sections/PromoSection'
+import TestimonialsSection from '../sections/TestimonialsSection'
 
 export const Landing = () => {
   return (
@@ -20,8 +19,7 @@ export const Landing = () => {
       <ProcessSection/>
       <TagScroll/>
       <PromoSection/>
-      <TestimonialSection/>
-      {/* <StackingCards/> */}
+      <TestimonialsSection/>
       <QualitySection/>
     </div>
   )

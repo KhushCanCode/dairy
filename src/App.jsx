@@ -1,27 +1,39 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import Footer from "./components/Footer";
+import gsap from "gsap";
+import { ScrollSmoother, ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function App() {
+  // useGSAP(() => {
+  //   if (!ScrollSmoother.get()) { // Prevent multiple instances
+  //     ScrollSmoother.create({
+  //       wrapper: "#smooth-wrapper",
+  //       content: "#smooth-content",
+  //       smooth: 1,
+  //       effects: true,
+  //     });
+  //   }
+  // }, []); // run only once
+
   return (
-    <div>
-      <Navbar/>
-
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/about" element={<About />} />
-
-          {/* fallback route */}
-          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-        </Routes>
-
-        <Footer/>
-    </div>
+    <>
+      <Navbar />
+      {/* <div id="smooth-wrapper">
+        <div id="smooth-content"> */}
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          </Routes>
+          <Footer />
+        {/* </div>
+      </div> */}
+    </>
   );
 }

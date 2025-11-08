@@ -8,64 +8,57 @@ const ProductPopUp = ({ open, setOpen, product, position }) => {
   const backdropRef = useRef(null);
 
   useEffect(() => {
-    if (open) {
-      setIsVisible(true);
+  if (open) {
+    setIsVisible(true);
 
-      // Start backdrop fade in
-      gsap.fromTo(
-        backdropRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.3, ease: "power2.out" }
-      );
+    // Animate backdrop fade in
+    gsap.fromTo(
+      backdropRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3, ease: "power2.out" }
+    );
 
-      // Animate popup from card position to center
-      const vw = window.innerWidth / 2;
-      const vh = window.innerHeight / 2;
-
-      const startX = position.left + 150; // card center approx
-      const startY = position.top + 200;
-
-      gsap.fromTo(
-        popupRef.current,
-        {
-          x: startX - vw,
-          y: startY - vh,
-          scale: 0.5,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          ease: "power3.out",
-        }
-      );
-    } else if (isVisible) {
-      // Animate closing
-      gsap.to(popupRef.current, {
+    // Animate popup appearing (scale + fade)
+    gsap.fromTo(
+      popupRef.current,
+      {
         scale: 0.8,
         opacity: 0,
         y: 50,
-        duration: 0.3,
-        ease: "power3.inOut",
-      });
-      gsap.to(backdropRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.inOut",
-        onComplete: () => setIsVisible(false),
-      });
-    }
-  }, [open]);
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      }
+    );
+  } else if (isVisible) {
+    // Animate closing
+    gsap.to(popupRef.current, {
+      scale: 0.9,
+      opacity: 0,
+      y: 50,
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+    gsap.to(backdropRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      onComplete: () => setIsVisible(false),
+    });
+  }
+}, [open]);
+
 
   if (!isVisible) return null;
 
   return (
     <div
       ref={backdropRef}
-      className="fixed inset-0 bg-black/50 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-black/50  z-50"
       onClick={() => setOpen(false)}
     >
       <div
