@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
 
    })
   return (
-    <section className='testimonials-section bg-dark-blue relative w-full h-[120dvh]'>
+    <section className='testimonials-section bg-dark-blue relative w-full lg:pt-0 pt-[20vh]  h-[120dvh]'>
         {/* Top waves */}
        {/* <div className='flex items-center -translate-y-1'>
          <img src="/images/wave.svg" alt="" />
@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
          <img src="/images/wave.svg" alt="" />
        </div> */}
 
-        <div className='absolute size-full flex flex-col items-center pt-[5vw]'>
+        <div className='absolute size-full flex flex-col items-center pt-[10vw] md:pt-[5vw]'>
             <h1 className='text-milk font-anton first-title uppercase text-[14.5vw] leading-[105%] tracking-[-.4vw] ml-[2vw] '>What are</h1>
             <h1 className='text-milk font-anton  sec-title uppercase text-[14.5vw] leading-[105%] tracking-[-.4vw] ml-[2vw]'>People</h1>
             <h1 className='text-milk  font-anton third-title uppercase text-[14.5vw] leading-[105%] tracking-[-.4vw] ml-[2vw] '>Saying? </h1>

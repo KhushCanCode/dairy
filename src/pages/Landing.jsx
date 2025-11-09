@@ -15,7 +15,6 @@ export const Landing = () => {
       <HeroSection/>
       <MessageSection/>
       <ProductSection/>
-      {/* <PopUp/> */}
       <ProcessSection/>
       <TagScroll/>
       <PromoSection/>

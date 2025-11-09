@@ -1,33 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { products } from "../constants/product.js";
 import { CircleAlert } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
-import ProductPopUp from "../components/ProductPopUp.jsx";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const ProductSection = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [popupPos, setPopupPos] = useState({ top: 0, left: 0 });
 
-  // store separate refs for each card
-  const cardRefs = useRef([]);
-
-  const handleOpen = (product, index) => {
-    const card = cardRefs.current[index];
-    if (card) {
-      const rect = card.getBoundingClientRect();
-      setPopupPos({
-        top: rect.bottom + window.scrollY + 10,
-        left: rect.left + window.scrollX,
-      });
-      setSelectedProduct(product);
-      setOpen(true);
-    }
-  };
 
   useGSAP(() => {
     // Badge Animation
@@ -94,7 +74,6 @@ const ProductSection = () => {
             {products.map((item, index) => (
               <div
                 key={index}
-                ref={(el) => (cardRefs.current[index] = el)}
                 className={`product-card w-[280px] md:w-[320px] h-[400px] hover:-translate-y-2 bg-linear-to-b ${item.gradient} rounded-2xl flex flex-col items-center justify-between p-6 transition-all duration-300`}
               >
                 <h2
@@ -111,7 +90,6 @@ const ProductSection = () => {
                 <button
                   className="text-milk cursor-pointer hover:opacity-80 font-anton px-5 py-2 rounded-full mt-4 transition duration-300 flex items-center gap-2"
                   style={{ backgroundColor: item.txtcolor }}
-                  onClick={() => handleOpen(item, index)}
                 >
                   <CircleAlert />
                   <p>See Details</p>
@@ -119,15 +97,6 @@ const ProductSection = () => {
               </div>
             ))}
           </div>
-
-          {open && selectedProduct && (
-            <ProductPopUp
-              open={open}
-              setOpen={setOpen}
-              product={selectedProduct}
-              position={popupPos}
-            />
-          )}
         </div>
       </section>
     </div>
