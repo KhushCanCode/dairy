@@ -7,8 +7,10 @@ import React from 'react'
 export const MessageSection = () => {
 
     useGSAP(()=>{
-        const msg1Split = SplitText.create(".first-message", {type: "words"} );
-        const msg2Split = SplitText.create(".second-message", {type: "words"} );
+        // Wait for fonts to load before creating SplitText
+        document.fonts.ready.then(() => {
+            const msg1Split = SplitText.create(".first-message", {type: "words"} );
+            const msg2Split = SplitText.create(".second-message", {type: "words"} );
 
         gsap.to(msg1Split.words, {
             color: "#faeade",
@@ -48,9 +50,7 @@ export const MessageSection = () => {
                 clipPath:"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
                 ease: "circ.inOut"
             })
-
-            
-
+        });
     })
   return (
     <section className="message-content  bg-dark-blue min-h-dvh overflow-hidden flex justify-center items-center relative z-20">

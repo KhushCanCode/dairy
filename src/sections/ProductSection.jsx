@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { products } from "../constants/product.js";
 import { CircleAlert } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
+import ProductDetailsModal from "../components/ProductDetailsModal";
 
 
 const ProductSection = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   useGSAP(() => {
@@ -20,17 +23,19 @@ const ProductSection = () => {
       },
     });
 
-    // Heading Animation
-    const textSplit = new SplitText(".heading", { type: "chars" });
-    gsap.from(textSplit.chars, {
-      yPercent: 200,
-      opacity: 0,
-      stagger: 0.02,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".heading",
-        start: "top 85%",
-      },
+    // Heading Animation - Wait for fonts to load
+    document.fonts.ready.then(() => {
+      const textSplit = new SplitText(".heading", { type: "chars" });
+      gsap.from(textSplit.chars, {
+        yPercent: 200,
+        opacity: 0,
+        stagger: 0.02,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".heading",
+          start: "top 85%",
+        },
+      });
     });
 
     // Product Cards Animation
@@ -88,6 +93,10 @@ const ProductSection = () => {
                   className="h-60 object-contain"
                 />
                 <button
+                  onClick={() => {
+                    setSelectedProduct(item);
+                    setIsModalOpen(true);
+                  }}
                   className="text-milk cursor-pointer hover:opacity-80 font-anton px-5 py-2 rounded-full mt-4 transition duration-300 flex items-center gap-2"
                   style={{ backgroundColor: item.txtcolor }}
                 >
@@ -99,6 +108,16 @@ const ProductSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Product Details Modal */}
+      <ProductDetailsModal
+        isOpen={isModalOpen}
+        product={selectedProduct}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProduct(null);
+        }}
+      />
     </div>
   );
 };

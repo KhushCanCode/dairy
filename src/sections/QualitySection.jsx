@@ -15,17 +15,19 @@ const QualitySection = () => {
       },
     });
 
-    // Heading Animation
-    const textSplit = new SplitText(".section-heading", { type: "chars" });
-    gsap.from(textSplit.chars, {
-      yPercent: 200,
-      opacity: 0,
-      stagger: 0.02,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".section-heading",
-        start: "top 85%",
-      },
+    // Heading Animation - Wait for fonts to load
+    document.fonts.ready.then(() => {
+      const textSplit = new SplitText(".section-heading", { type: "chars" });
+      gsap.from(textSplit.chars, {
+        yPercent: 200,
+        opacity: 0,
+        stagger: 0.02,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".section-heading",
+          start: "top 85%",
+        },
+      });
     });
 
     // Box Animation 

@@ -46,6 +46,60 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
 
+/* Custom Select/Dropdown Styling */
+select {
+  font-family: var(--font-anuphan) !important;
+  color: var(--color-dark-blue) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select option {
+  background-color: white !important;
+  color: var(--color-dark-blue) !important;
+  padding: 0.75rem 1rem !important;
+  font-family: var(--font-anuphan) !important;
+  font-size: 0.875rem !important;
+}
+
+select option:hover {
+  background-color: rgba(2, 93, 167, 0.1) !important;
+}
+
+select option:checked,
+select option:focus {
+  background-color: var(--color-dark-blue) !important;
+  color: white !important;
+}
+
+select:invalid {
+  color: rgba(2, 93, 167, 0.5) !important;
+}
+
+select:focus {
+  outline: none;
+}
+
+/* Scrollbar styling for select dropdowns */
+select::-webkit-scrollbar {
+  width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb {
+  background: var(--color-dark-blue);
+  border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+  background: rgba(2, 93, 167, 0.8);
+}
+
 @layer utilities {
   .flex-center {
     @apply flex justify-center items-center;
@@ -95,4 +149,177 @@ body::-webkit-scrollbar {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animated Hamburger Menu Icon */
+.animated-hamburger-menu {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.animated-hamburger-menu:hover {
+  transform: scale(1.1);
+}
+
+.animated-hamburger-menu:active {
+  transform: scale(0.95);
+}
+
+/* Hamburger lines */
+.hamburger-line {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #fbbf24;
+  border-radius: 3px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center center;
+}
+
+@media (min-width: 768px) {
+  .hamburger-line {
+    width: 32px;
+    height: 3.5px;
+  }
+}
+
+/* Animation when menu opens - line 1 rotates and moves down */
+.hamburger-open-line-1 {
+  transform: translateY(9px) rotate(45deg) scaleX(1) !important;
+  background-color: #f59e0b;
+  animation: none !important;
+}
+
+@media (min-width: 768px) {
+  .hamburger-open-line-1 {
+    transform: translateY(10px) rotate(45deg) scaleX(1) !important;
+  }
+}
+
+/* Animation when menu opens - line 2 fades out */
+.hamburger-open-line-2 {
+  opacity: 0;
+  transform: scale(0) !important;
+  animation: none !important;
+}
+
+/* Animation when menu opens - line 3 rotates and moves up */
+.hamburger-open-line-3 {
+  transform: translateY(-9px) rotate(-45deg) scaleX(1) !important;
+  background-color: #f59e0b;
+  animation: none !important;
+}
+
+@media (min-width: 768px) {
+  .hamburger-open-line-3 {
+    transform: translateY(-10px) rotate(-45deg) scaleX(1) !important;
+  }
+}
+
+/* Hover effect - lines expand slightly */
+.animated-hamburger-menu:hover .hamburger-line {
+  background-color: #fcd34d;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+/* Random horizontal scale animations for each line - different patterns to appear random */
+@keyframes hamburger-scale-line-1 {
+  0% {
+    transform: scaleX(1);
+  }
+  15% {
+    transform: scaleX(1.35);
+  }
+  35% {
+    transform: scaleX(0.75);
+  }
+  55% {
+    transform: scaleX(1.2);
+  }
+  75% {
+    transform: scaleX(0.85);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hamburger-scale-line-2 {
+  0% {
+    transform: scaleX(1);
+  }
+  20% {
+    transform: scaleX(0.65);
+  }
+  45% {
+    transform: scaleX(1.45);
+  }
+  65% {
+    transform: scaleX(0.9);
+  }
+  80% {
+    transform: scaleX(1.15);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hamburger-scale-line-3 {
+  0% {
+    transform: scaleX(1);
+  }
+  25% {
+    transform: scaleX(1.3);
+  }
+  50% {
+    transform: scaleX(0.7);
+  }
+  70% {
+    transform: scaleX(1.25);
+  }
+  85% {
+    transform: scaleX(0.95);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Apply random horizontal scaling on hover - only when menu is closed */
+.animated-hamburger-menu:not(.hamburger-open):hover .hamburger-line:nth-child(1) {
+  animation: hamburger-scale-line-1 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animated-hamburger-menu:not(.hamburger-open):hover .hamburger-line:nth-child(2) {
+  animation: hamburger-scale-line-2 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 0.2s;
+}
+
+.animated-hamburger-menu:not(.hamburger-open):hover .hamburger-line:nth-child(3) {
+  animation: hamburger-scale-line-3 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 0.4s;
 }
