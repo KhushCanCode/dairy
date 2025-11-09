@@ -211,8 +211,8 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
       {/* Navbar */}
       <nav className="fixed w-full top-0 left-0 z-50 py-4 px-4 md:px-6 flex justify-between items-center">
         {/* Logo */}
-        <div 
-          className="cursor-pointer" 
+        <div
+          className="cursor-pointer"
           onClick={() => {
             setMenuOpen(false);
             navigate("/");
@@ -253,7 +253,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
 
           <div className="relative z-10 w-full">
             {["Home", "Products", "Experience", "Franchise", "Mail Us"].map(
-              (item, i) => (
+            (item, i) => (
                 <div
                   key={i}
                   ref={(el) => (menuItemsRef.current[i] = el)}
@@ -271,7 +271,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                     }}
                   >
                     <span className="relative inline-block">
-                      {item}
+                {item}
                       {/* Underline animation */}
                       <span
                         className={`absolute bottom-0 left-0 h-1 bg-dark-blue transition-all duration-500 ${
@@ -284,7 +284,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                         }}
                       ></span>
                     </span>
-                  </h1>
+              </h1>
                   
                   {/* Hover indicator */}
                   <div
@@ -346,13 +346,13 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
         <div className="flex-1 hidden md:block relative overflow-hidden bg-gradient-to-br from-dark-blue/5 to-dark-blue/10">
           {/* Image Container with proper sizing for quality */}
           <div className="absolute inset-0 flex items-center justify-center p-8 lg:p-12">
-            <div className="relative w-full h-full max-w-2xl max-h-[80vh] rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+            <div className="relative w-full h-full max-w-2xl max-h-[80vh] rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
               {/* First Image Layer */}
               <img
                 ref={imageRef}
                 src={defaultImage}
                 alt="menu preview"
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   imageRendering: "auto",
                   zIndex: currentImageIndex === 0 ? 2 : 0,
@@ -365,7 +365,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                 ref={imageRef2}
                 src={defaultImage}
                 alt="menu preview"
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   imageRendering: "auto",
                   zIndex: currentImageIndex === 1 ? 2 : 0,

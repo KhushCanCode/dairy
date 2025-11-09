@@ -143,7 +143,7 @@ const Footer = ({ onOpenMailUsModal }) => {
                 Mail Us
               </button>
             </div>
-          </div>
+            </div>
 
           {/* Social Media Icons */}
           <div className='mt-6 sm:mt-8 pt-6 border-t border-white/20'>
@@ -192,8 +192,8 @@ const Footer = ({ onOpenMailUsModal }) => {
                 </a>
               </div>
             </div>
-          </div>
-
+            </div>
+            
           {/* Copyright */}
           <div className='mt-6 sm:mt-8 pt-4 border-t border-white/10 text-center'>
             <p className='text-milk/60 font-anuphan text-xs sm:text-sm'>
@@ -201,7 +201,7 @@ const Footer = ({ onOpenMailUsModal }) => {
             </p>
           </div>
         </div>
-      </div>
+    </div>
     </footer>
   )
 }
