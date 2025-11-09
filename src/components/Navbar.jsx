@@ -211,8 +211,8 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
       {/* Navbar */}
       <nav className="fixed w-full top-0 left-0 z-50 py-4 px-4 md:px-6 flex justify-between items-center">
         {/* Logo */}
-        <div 
-          className="cursor-pointer" 
+        <div
+          className="cursor-pointer"
           onClick={() => {
             setMenuOpen(false);
             navigate("/");
@@ -253,7 +253,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
 
           <div className="relative z-10 w-full">
             {["Home", "Products", "Experience", "Franchise", "Mail Us"].map(
-              (item, i) => (
+            (item, i) => (
                 <div
                   key={i}
                   ref={(el) => (menuItemsRef.current[i] = el)}
@@ -271,7 +271,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                     }}
                   >
                     <span className="relative inline-block">
-                      {item}
+                {item}
                       {/* Underline animation */}
                       <span
                         className={`absolute bottom-0 left-0 h-1 bg-dark-blue transition-all duration-500 ${
@@ -284,7 +284,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                         }}
                       ></span>
                     </span>
-                  </h1>
+              </h1>
                   
                   {/* Hover indicator */}
                   <div

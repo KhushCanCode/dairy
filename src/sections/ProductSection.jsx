@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { products } from "../constants/product.js";
-import { CircleAlert } from "lucide-react";
+import { CircleAlert, ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
@@ -8,6 +9,7 @@ import ProductDetailsModal from "../components/ProductDetailsModal";
 
 
 const ProductSection = () => {
+  const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,19 +25,17 @@ const ProductSection = () => {
       },
     });
 
-    // Heading Animation - Wait for fonts to load
-    document.fonts.ready.then(() => {
-      const textSplit = new SplitText(".heading", { type: "chars" });
-      gsap.from(textSplit.chars, {
-        yPercent: 200,
-        opacity: 0,
-        stagger: 0.02,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".heading",
-          start: "top 85%",
-        },
-      });
+    // Heading Animation
+    const textSplit = new SplitText(".heading", { type: "chars" });
+    gsap.from(textSplit.chars, {
+      yPercent: 200,
+      opacity: 0,
+      stagger: 0.02,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".heading",
+        start: "top 85%",
+      },
     });
 
     // Product Cards Animation
@@ -76,7 +76,7 @@ const ProductSection = () => {
           </h1>
 
           <div className="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5 md:max-w-6xl mx-auto relative">
-            {products.map((item, index) => (
+            {products.slice(0, 3).map((item, index) => (
               <div
                 key={index}
                 className={`product-card w-[280px] md:w-[320px] h-[400px] hover:-translate-y-2 bg-linear-to-b ${item.gradient} rounded-2xl flex flex-col items-center justify-between p-6 transition-all duration-300`}
@@ -105,6 +105,20 @@ const ProductSection = () => {
                 </button>
               </div>
             ))}
+          </div>
+
+          {/* See More Products Button */}
+          <div className="mt-10 md:mt-16 flex justify-center">
+            <button
+              onClick={() => {
+                navigate("/products");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="group flex items-center gap-3 px-8 py-4 bg-dark-blue text-milk font-anton uppercase rounded-full hover:bg-dark-blue/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base md:text-lg"
+            >
+              <span>See More Products</span>
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </div>
         </div>
       </section>
