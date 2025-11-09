@@ -346,13 +346,13 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
         <div className="flex-1 hidden md:block relative overflow-hidden bg-gradient-to-br from-dark-blue/5 to-dark-blue/10">
           {/* Image Container with proper sizing for quality */}
           <div className="absolute inset-0 flex items-center justify-center p-8 lg:p-12">
-            <div className="relative w-full h-full max-w-2xl max-h-[80vh] rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+            <div className="relative w-full h-full max-w-2xl max-h-[80vh] rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
               {/* First Image Layer */}
               <img
                 ref={imageRef}
                 src={defaultImage}
                 alt="menu preview"
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   imageRendering: "auto",
                   zIndex: currentImageIndex === 0 ? 2 : 0,
@@ -365,7 +365,7 @@ export const Navbar = ({ onOpenFranchiseModal, onOpenMailUsModal }) => {
                 ref={imageRef2}
                 src={defaultImage}
                 alt="menu preview"
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   imageRendering: "auto",
                   zIndex: currentImageIndex === 1 ? 2 : 0,
