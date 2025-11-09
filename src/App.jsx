@@ -1,8 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import { Landing } from "./pages/Landing";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
 import Footer from "./components/Footer";
+import FranchiseModal from "./components/FranchiseModal";
+import MailUsModal from "./components/MailUsModal";
 import gsap from "gsap";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
@@ -10,6 +13,9 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function App() {
+  const [isFranchiseModalOpen, setIsFranchiseModalOpen] = useState(false);
+  const [isMailUsModalOpen, setIsMailUsModalOpen] = useState(false);
+
   // useGSAP(() => {
   //   if (!ScrollSmoother.get()) { // Prevent multiple instances
   //     ScrollSmoother.create({
@@ -23,7 +29,10 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar 
+        onOpenFranchiseModal={() => setIsFranchiseModalOpen(true)}
+        onOpenMailUsModal={() => setIsMailUsModalOpen(true)}
+      />
       {/* <div id="smooth-wrapper">
         <div id="smooth-content"> */}
           <Routes>
@@ -31,7 +40,15 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="*" element={<h1>404 - Page Not Found</h1>} />
           </Routes>
-          <Footer />
+          <Footer onOpenMailUsModal={() => setIsMailUsModalOpen(true)} />
+          <FranchiseModal 
+            isOpen={isFranchiseModalOpen} 
+            onClose={() => setIsFranchiseModalOpen(false)} 
+          />
+          <MailUsModal 
+            isOpen={isMailUsModalOpen} 
+            onClose={() => setIsMailUsModalOpen(false)} 
+          />
         {/* </div>
       </div> */}
     </>
