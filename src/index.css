@@ -46,6 +46,60 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
 
+/* Custom Select/Dropdown Styling */
+select {
+  font-family: var(--font-anuphan) !important;
+  color: var(--color-dark-blue) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select option {
+  background-color: white !important;
+  color: var(--color-dark-blue) !important;
+  padding: 0.75rem 1rem !important;
+  font-family: var(--font-anuphan) !important;
+  font-size: 0.875rem !important;
+}
+
+select option:hover {
+  background-color: rgba(2, 93, 167, 0.1) !important;
+}
+
+select option:checked,
+select option:focus {
+  background-color: var(--color-dark-blue) !important;
+  color: white !important;
+}
+
+select:invalid {
+  color: rgba(2, 93, 167, 0.5) !important;
+}
+
+select:focus {
+  outline: none;
+}
+
+/* Scrollbar styling for select dropdowns */
+select::-webkit-scrollbar {
+  width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb {
+  background: var(--color-dark-blue);
+  border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+  background: rgba(2, 93, 167, 0.8);
+}
+
 @layer utilities {
   .flex-center {
     @apply flex justify-center items-center;

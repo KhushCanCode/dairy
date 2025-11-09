@@ -53,17 +53,19 @@ const FranchiseSection = () => {
       },
     });
 
-    // Heading Animation
-    const textSplit = new SplitText(".franchise-heading", { type: "chars" });
-    gsap.from(textSplit.chars, {
-      yPercent: 200,
-      opacity: 0,
-      stagger: 0.02,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".franchise-heading",
-        start: "top 85%",
-      },
+    // Heading Animation - Wait for fonts to load
+    document.fonts.ready.then(() => {
+      const textSplit = new SplitText(".franchise-heading", { type: "chars" });
+      gsap.from(textSplit.chars, {
+        yPercent: 200,
+        opacity: 0,
+        stagger: 0.02,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".franchise-heading",
+          start: "top 85%",
+        },
+      });
     });
 
     // Form Animation

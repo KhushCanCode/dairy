@@ -289,20 +289,40 @@ const MailUsModal = ({ isOpen, onClose }) => {
                       <label className="block text-xs sm:text-sm font-anuphan text-dark-blue mb-1">
                         Interest <span className="text-red-500">*</span>
                       </label>
-                      <select
-                        name="interest"
-                        value={formData.interest}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 text-sm rounded-lg border border-dark-blue/30 focus:border-dark-blue focus:outline-none focus:ring-2 focus:ring-dark-blue/20 transition-all bg-white/80 cursor-pointer"
-                      >
-                        <option value="">Select your interest</option>
-                        {interests.map((interest, index) => (
-                          <option key={index} value={interest}>
-                            {interest}
+                      <div className="relative">
+                        <select
+                          name="interest"
+                          value={formData.interest}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 text-sm rounded-lg border border-dark-blue/30 focus:border-dark-blue focus:outline-none focus:ring-2 focus:ring-dark-blue/20 transition-all bg-white/80 cursor-pointer appearance-none font-anuphan text-dark-blue pr-10 hover:border-dark-blue/50"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23025da7' d='M8 11L3 6h10z'/%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 1rem center',
+                            backgroundSize: '16px',
+                            paddingRight: '2.5rem',
+                          }}
+                        >
+                          <option value="" disabled style={{ color: 'rgba(2, 93, 167, 0.5)', fontFamily: 'Anuphan, sans-serif' }}>
+                            Select your interest
                           </option>
-                        ))}
-                      </select>
+                          {interests.map((interest, index) => (
+                            <option 
+                              key={index} 
+                              value={interest}
+                              style={{ 
+                                color: '#025da7', 
+                                fontFamily: 'Anuphan, sans-serif',
+                                backgroundColor: 'white',
+                                padding: '0.5rem'
+                              }}
+                            >
+                              {interest}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
